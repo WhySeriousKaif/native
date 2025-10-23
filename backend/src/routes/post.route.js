@@ -1,5 +1,5 @@
 import express from 'express'
-import {getPosts,getPost,getUserPosts,likePost, deletePost} from '../controllers/post.controller.js'
+import {getPosts,getPost,getUserPosts,likePost, deletePost, createPost} from '../controllers/post.controller.js'
 import { protectRoute } from '../middlewares/auth.middleware.js'
 import { upload } from '../middlewares/upload.middleware.js'
 

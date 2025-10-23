@@ -17,6 +17,7 @@ app.use(clerkMiddleware())
 
 
 
+
 app.get('/',(req,res)=>{
     res.send('API is running....')
 })
