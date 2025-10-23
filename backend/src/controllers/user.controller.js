@@ -34,7 +34,7 @@ export const syncUser = asyncHandler(async (req, res) => {
   if (existingUser)
     return res
       .status(200)
-      .json({ use: existingUser, message: "User already exists" });
+      .json({ user: existingUser, message: "User already exists" });
 
   const clerkUser = await clerkClient.users.getUser(userId);
 
@@ -54,7 +54,7 @@ export const syncUser = asyncHandler(async (req, res) => {
 export const getCurrentUser = asyncHandler(async (req, res) => {
   const { userId } = getAuth(req);
 
-  const user = await User.findOne({ clerkId: useId });
+  const user = await User.findOne({ clerkId: userId });
   if (!user) {
     res.status(404).json({ message: "User not found" });
   }

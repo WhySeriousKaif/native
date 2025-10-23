@@ -1,6 +1,8 @@
 import asyncHandler from "express-async-handler";
-import Post from "./models/post.model.js";
+import Post from "../models/post.model.js";
 import User from "../models/user.model.js";
+import Notification from "../models/notification.model.js";
+import Comment from "../models/comment.model.js";
 import { getAuth } from "@clerk/express";
 import { cloudinary } from "../config/cloudinary.js";
 
@@ -67,7 +69,7 @@ export const createPost = asyncHandler(async (req, res) => {
       .status(400)
       .json({ message: "Post must contain either text or image" });
   }
-  const user = await User.findById({ clerkId: userId });
+  const user = await User.findOne({ clerkId: userId });
   if (!user) return res.status(400).json({ message: "User not found" });
 
   let imageUrl = "";
@@ -117,7 +119,7 @@ export const likePost = asyncHandler(async (req, res) => {
   if (!user || !post)
     return res.status(404).json({ message: "User or Post not found" });
 
-  const isLiked = post.likes.include(user._id);
+  const isLiked = post.likes.includes(user._id);
 
   if (isLiked) {
     // unlike

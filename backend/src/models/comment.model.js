@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { ENV } from "./env.js";
+import { ENV } from "../config/env.js";
 
 const commentSchema = new mongoose.Schema(
   {
