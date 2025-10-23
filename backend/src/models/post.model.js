@@ -3,7 +3,7 @@ import { ENV } from "./env.js";
 
 const postSchema = new mongoose.Schema(
   {
-    use: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
